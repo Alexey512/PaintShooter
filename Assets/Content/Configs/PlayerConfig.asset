@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5af1182610cb8b74fa27de9b7f2a9e0c, type: 3}
+  m_Name: PlayerConfig
+  m_EditorClassIdentifier: 
+  _components:
+  - rid: 8359346629037260804
+  - rid: 8359346629037260805
+  - rid: 8359346629037260809
+  _systems:
+  - rid: 8359346629037260806
+  references:
+    version: 2
+    RefIds:
+    - rid: 8359346629037260804
+      type: {class: PlayerComponent, ns: Game.Components, asm: Assembly-CSharp}
+      data:
+        WeaponCenter: {fileID: 0}
+    - rid: 8359346629037260805
+      type: {class: UnitComponent, ns: Game.Components, asm: Assembly-CSharp}
+      data:
+        Color: 0
+    - rid: 8359346629037260806
+      type: {class: WeaponSystem, ns: Game.Systems, asm: Assembly-CSharp}
+    - rid: 8359346629037260809
+      type: {class: WeaponComponent, ns: Game.Components, asm: Assembly-CSharp}
+      data:
+        ShootInterval: 1
