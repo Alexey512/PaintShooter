@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace ECS
 {
@@ -11,9 +12,9 @@ namespace ECS
 
 		private readonly List<IEntity> _entities = new List<IEntity>();
 
-		private readonly TypeHashCollection<IComponent> _components = new TypeHashCollection<IComponent>();
+		private readonly TypedCollection<IComponent> _components = new TypedCollection<IComponent>();
 		
-		private readonly TypeHashCollection<ISystem> _systems = new TypeHashCollection<ISystem>();
+		private readonly TypedCollection<ISystem> _systems = new TypedCollection<ISystem>();
 
 		public void RegisterEntity(IEntity entity)
 		{
@@ -65,14 +66,14 @@ namespace ECS
 			_systems.RemoveItem(system);
 		}
 
-		public IEnumerable<T> GetComponents<T>() where T : IComponent
+		public IEnumerable<T> GetComponents<T>() where T : class, IComponent
 		{
-			return _components.GetItems() as IEnumerable<T>;
+			return _components.GetItems<T>();
 		}
 
-		public IEnumerable<T> GetSystems<T>() where T : ISystem
+		public IEnumerable<T> GetSystems<T>() where T : class, ISystem
 		{
-			return _systems.GetItems() as IEnumerable<T>;
+			return _systems.GetItems<T>();
 		}
 
 		public IEnumerable<IEntity> GetEntities()

@@ -16,9 +16,9 @@ namespace ECS
 
 		void UnRegisterSystem(ISystem system);
 
-		IEnumerable<T> GetComponents<T>() where T : IComponent;
+		IEnumerable<T> GetComponents<T>() where T : class, IComponent;
 
-		IEnumerable<T> GetSystems<T>() where T : ISystem;
+		IEnumerable<T> GetSystems<T>() where T : class, ISystem;
 
 		IEnumerable<IEntity> GetEntities();
 	}

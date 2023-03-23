@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5af1182610cb8b74fa27de9b7f2a9e0c, type: 3}
+  m_Name: SlimePlayerConfig
+  m_EditorClassIdentifier: 
+  _components:
+  - rid: 8359346650423754759
+  _systems:
+  - rid: 8359346650423754760
+  references:
+    version: 2
+    RefIds:
+    - rid: 8359346650423754759
+      type: {class: SlimePlayerComponent, ns: Game.Components, asm: Assembly-CSharp}
+      data:
+        Speed: 3
+        FightDistance: 3
+        RateOfFire: 1
+    - rid: 8359346650423754760
+      type: {class: SlimeSystem, ns: Game.Systems, asm: Assembly-CSharp}
