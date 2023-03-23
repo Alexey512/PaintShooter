@@ -7,7 +7,6 @@ namespace Game.Components
 	[Serializable]
 	public class WeaponComponent: BaseComponent
 	{
-		[SerializeField]
-		public float ShootInterval = 1.0f;
+		public float RateOfFire = 1.0f;
 	}
 }

@@ -15,7 +15,6 @@ namespace Game.Components
 	[Serializable]
 	public class UnitComponent: BaseComponent
 	{
-		[SerializeField]
 		public UnitColor Color = 0;
 	}
 }

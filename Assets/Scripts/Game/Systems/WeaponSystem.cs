@@ -16,7 +16,6 @@ namespace Game.Systems
 		[Inject]
 		private IFactory<BulletUnit> _bulletFactory;
 
-		[NonSerialized]
 		private InputController _input;
 
 		public override void Initialize()

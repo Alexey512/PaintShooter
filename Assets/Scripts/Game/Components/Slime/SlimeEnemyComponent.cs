@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ECS;
 
-namespace Game.Components
+namespace Game.Components.Slime
 {
 	[Serializable]
 	public class SlimeEnemyComponent: BaseComponent

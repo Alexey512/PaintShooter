@@ -66,17 +66,17 @@ namespace ECS
 			_systems.RemoveItem(system);
 		}
 
-		public IEnumerable<T> GetComponents<T>() where T : class, IComponent
+		public List<T> GetComponents<T>() where T : class, IComponent
 		{
 			return _components.GetItems<T>();
 		}
 
-		public IEnumerable<T> GetSystems<T>() where T : class, ISystem
+		public List<T> GetSystems<T>() where T : class, ISystem
 		{
 			return _systems.GetItems<T>();
 		}
 
-		public IEnumerable<IEntity> GetEntities()
+		public List<IEntity> GetEntities()
 		{
 			return _entities;
 		}

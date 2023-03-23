@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using ECS;
 using UnityEngine;
 
-namespace Game.Components
+namespace Game.Components.Slime
 {
 	[Serializable]
 	public class SlimePlayerComponent: BaseComponent

@@ -27,12 +27,16 @@ namespace Actors
 
 			foreach (var component in _components)
 			{
-				entity.AddComponent(ObjectCloner.Clone(component));
+				if (component == null)
+					continue;
+				entity.AddComponent(ObjectCloner.CloneJson<IComponent>(component));
 			}
 
 			foreach (var system in _systems)
 			{
-				entity.AddSystem(ObjectCloner.Clone(system));
+				if (system == null)
+					continue;
+				entity.AddSystem(ObjectCloner.CloneJson<ISystem>(system));
 			}
 
 			entity.Initialize();

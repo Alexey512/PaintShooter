@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: SlimeEnemyConfig
   m_EditorClassIdentifier: 
   _components:
-  - rid: 8359346650423754757
+  - rid: 8359346655633342469
   _systems: []
   references:
     version: 2
     RefIds:
-    - rid: 8359346650423754757
-      type: {class: SlimeEnemyComponent, ns: Game.Components, asm: Assembly-CSharp}
+    - rid: 8359346655633342469
+      type: {class: SlimeEnemyComponent, ns: Game.Components.Slime, asm: Assembly-CSharp}

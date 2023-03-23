@@ -13,17 +13,25 @@ MonoBehaviour:
   m_Name: SlimePlayerConfig
   m_EditorClassIdentifier: 
   _components:
-  - rid: 8359346650423754759
+  - rid: 8359346655633342464
+  - rid: 8359346655633342470
   _systems:
-  - rid: 8359346650423754760
+  - rid: 8359346655633342465
+  - rid: 8359346655633342466
   references:
     version: 2
     RefIds:
-    - rid: 8359346650423754759
-      type: {class: SlimePlayerComponent, ns: Game.Components, asm: Assembly-CSharp}
+    - rid: 8359346655633342464
+      type: {class: SlimePlayerComponent, ns: Game.Components.Slime, asm: Assembly-CSharp}
       data:
         Speed: 3
-        FightDistance: 3
+        FightDistance: 6
         RateOfFire: 1
-    - rid: 8359346650423754760
-      type: {class: SlimeSystem, ns: Game.Systems, asm: Assembly-CSharp}
+    - rid: 8359346655633342465
+      type: {class: SlimePlayerMoveSystem, ns: Game.Systems.Slime, asm: Assembly-CSharp}
+    - rid: 8359346655633342466
+      type: {class: SlimePlayerAttackSystem, ns: Game.Systems.Slime, asm: Assembly-CSharp}
+    - rid: 8359346655633342470
+      type: {class: WeaponComponent, ns: Game.Components, asm: Assembly-CSharp}
+      data:
+        RateOfFire: 1

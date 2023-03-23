@@ -16,10 +16,10 @@ namespace ECS
 
 		void UnRegisterSystem(ISystem system);
 
-		IEnumerable<T> GetComponents<T>() where T : class, IComponent;
+		List<T> GetComponents<T>() where T : class, IComponent;
 
-		IEnumerable<T> GetSystems<T>() where T : class, ISystem;
+		List<T> GetSystems<T>() where T : class, ISystem;
 
-		IEnumerable<IEntity> GetEntities();
+		List<IEntity> GetEntities();
 	}
 }
