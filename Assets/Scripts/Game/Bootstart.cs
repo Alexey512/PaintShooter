@@ -1,10 +1,15 @@
 ﻿using Game.States;
+using Game.UI;
+using UnityEngine;
 using Zenject;
 
 namespace Game
 {
 	public class Bootstart: MonoInstaller
 	{
+		[SerializeField]
+		private LoadScreen _loadScreen;
+		
 		private GameStateMachine _stateMachine;
 		
 		public override void InstallBindings()
@@ -15,6 +20,7 @@ namespace Game
 			Container.DeclareSignal<ResumeGameEvent>();
 			
 			Container.BindInterfacesAndSelfTo<GameStateMachine>().AsSingle();
+			Container.Bind<ILoadScreen>().To<LoadScreen>().FromComponentOn(_loadScreen.gameObject).AsSingle();
 		}
 
 		public override void Start()

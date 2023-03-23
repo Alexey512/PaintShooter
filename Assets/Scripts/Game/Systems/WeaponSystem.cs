@@ -60,7 +60,9 @@ namespace Game.Systems
 			{
 				var startPos = _input.ActionPoint.transform.position;
 				bullet.transform.position = startPos;
-				var endPos = _input.ActionPoint.rotation * Vector3.forward * 100.0f;
+				//var endPos = _input.ActionPoint.rotation * Vector3.forward * 100.0f;
+				var endPos = startPos + _input.ActionPoint.forward * 100.0f;
+
 				bullet.Move(endPos);
 			}
 		}
