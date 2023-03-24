@@ -1,5 +1,5 @@
 {
-    "name": "StarterAssets",
+    "name": "ShooterInput",
     "maps": [
         {
             "name": "Player",
@@ -45,6 +45,15 @@
                     "name": "Shoot",
                     "type": "Button",
                     "id": "5ea10103-1f51-41ac-bdb5-b629b0979144",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Rotate",
+                    "type": "Button",
+                    "id": "e031e5c9-68c0-4ef5-a1ff-7533fe46fc5a",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -234,8 +243,19 @@
                     "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "KeyboardMouse",
                     "action": "Shoot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b92262ca-6bb8-4da7-a0bb-7bce42cbe6c7",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyboardMouse",
+                    "action": "Rotate",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

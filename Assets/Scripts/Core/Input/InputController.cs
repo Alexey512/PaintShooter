@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 #endif
 
-namespace StarterAssets
+namespace Core.Input
 {
 	public class InputController : MonoBehaviour
 	{
@@ -29,35 +29,53 @@ namespace StarterAssets
 
 		public bool Shoot;
 
+		public bool Rotate;
+
 		public Transform ActionPoint => _actionPoint;
 
 #if ENABLE_INPUT_SYSTEM
-		public void OnMove(InputValue value)
+
+		public void OnMove(InputAction.CallbackContext context)
 		{
-			MoveInput(value.Get<Vector2>());
+			MoveInput(context.ReadValue<Vector2>());
 		}
 
-		public void OnLook(InputValue value)
+		public void OnLook(InputAction.CallbackContext context)
 		{
-			if(CursorInputForLook)
+			if (CursorInputForLook)
 			{
-				LookInput(value.Get<Vector2>());
+				LookInput(context.ReadValue<Vector2>());
 			}
 		}
 
-		public void OnJump(InputValue value)
+		public void OnJump(InputAction.CallbackContext context)
 		{
-			JumpInput(value.isPressed);
+			if (context.started)
+				JumpInput(context.started);
 		}
 
-		public void OnSprint(InputValue value)
+		public void OnSprint(InputAction.CallbackContext context)
 		{
-			SprintInput(value.isPressed);
+			if (context.started)
+				SprintInput(context.started);
 		}
 
-		public void OnShoot(InputValue value)
+		public void OnShoot(InputAction.CallbackContext context)
 		{
-			ShootInput(value.isPressed);
+			if (context.started)
+				ShootInput(context.started);
+		}
+
+		public void OnRotate(InputAction.CallbackContext context)
+		{
+			if (context.started)
+			{
+				RotateInput(true);
+			}
+			else if (context.canceled)
+			{
+				RotateInput(false);
+			}
 		}
 #endif
 
@@ -84,6 +102,11 @@ namespace StarterAssets
 		public void ShootInput(bool isShoot)
 		{
 			Shoot = isShoot;
+		}
+
+		public void RotateInput(bool isRotate)
+		{
+			Rotate = isRotate;
 		}
 
 		private void OnApplicationFocus(bool hasFocus)
