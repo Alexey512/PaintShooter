@@ -2401,7 +2401,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2715845844372818534, guid: ab8cc15191467aa4f8e2227875a29094,
         type: 3}
+      propertyPath: m_ActionEvents.Array.size
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2715845844372818534, guid: ab8cc15191467aa4f8e2227875a29094,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[6].m_ActionId
+      value: c0077813-f86a-4d7d-af67-bd96c1007e0b
+      objectReference: {fileID: 0}
+    - target: {fileID: 2715845844372818534, guid: ab8cc15191467aa4f8e2227875a29094,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[6].m_ActionName
+      value: Player/Esc[/Keyboard/escape]
+      objectReference: {fileID: 0}
+    - target: {fileID: 2715845844372818534, guid: ab8cc15191467aa4f8e2227875a29094,
+        type: 3}
       propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2715845844372818534, guid: ab8cc15191467aa4f8e2227875a29094,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[6].m_PersistentCalls.m_Calls.Array.size
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2715845844372818534, guid: ab8cc15191467aa4f8e2227875a29094,
@@ -2411,7 +2431,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2715845844372818534, guid: ab8cc15191467aa4f8e2227875a29094,
         type: 3}
+      propertyPath: m_ActionEvents.Array.data[6].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2715845844372818534, guid: ab8cc15191467aa4f8e2227875a29094,
+        type: 3}
       propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2051498286}
+    - target: {fileID: 2715845844372818534, guid: ab8cc15191467aa4f8e2227875a29094,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[6].m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 2051498286}
     - target: {fileID: 2715845844372818534, guid: ab8cc15191467aa4f8e2227875a29094,
@@ -2421,8 +2451,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2715845844372818534, guid: ab8cc15191467aa4f8e2227875a29094,
         type: 3}
+      propertyPath: m_ActionEvents.Array.data[6].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2715845844372818534, guid: ab8cc15191467aa4f8e2227875a29094,
+        type: 3}
       propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: OnRotate
+      objectReference: {fileID: 0}
+    - target: {fileID: 2715845844372818534, guid: ab8cc15191467aa4f8e2227875a29094,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[6].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnEscape
       objectReference: {fileID: 0}
     - target: {fileID: 2715845844372818534, guid: ab8cc15191467aa4f8e2227875a29094,
         type: 3}
@@ -2431,7 +2471,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2715845844372818534, guid: ab8cc15191467aa4f8e2227875a29094,
         type: 3}
+      propertyPath: m_ActionEvents.Array.data[6].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Core.Input.InputController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2715845844372818534, guid: ab8cc15191467aa4f8e2227875a29094,
+        type: 3}
       propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 2715845844372818534, guid: ab8cc15191467aa4f8e2227875a29094,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[6].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []

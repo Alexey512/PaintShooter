@@ -57,13 +57,17 @@ namespace Core.Input
 		public void OnSprint(InputAction.CallbackContext context)
 		{
 			if (context.started)
+			{
 				SprintInput(context.started);
+			}
 		}
 
 		public void OnShoot(InputAction.CallbackContext context)
 		{
 			if (context.started)
+			{
 				ShootInput(context.started);
+			}
 		}
 
 		public void OnRotate(InputAction.CallbackContext context)
@@ -75,6 +79,14 @@ namespace Core.Input
 			else if (context.canceled)
 			{
 				RotateInput(false);
+			}
+		}
+
+		public void OnEscape(InputAction.CallbackContext context)
+		{
+			if (context.started)
+			{
+				SetCursorLock(false);
 			}
 		}
 #endif
@@ -102,21 +114,23 @@ namespace Core.Input
 		public void ShootInput(bool isShoot)
 		{
 			Shoot = isShoot;
+			SetCursorLock(CursorLocked);
 		}
 
 		public void RotateInput(bool isRotate)
 		{
 			Rotate = isRotate;
+			SetCursorLock(CursorLocked);
 		}
 
 		private void OnApplicationFocus(bool hasFocus)
 		{
-			SetCursorState(CursorLocked);
+			SetCursorLock(CursorLocked);
 		}
 
-		private void SetCursorState(bool newState)
+		private void SetCursorLock(bool isLock)
 		{
-			Cursor.lockState = newState ? CursorLockMode.Locked : CursorLockMode.None;
+			Cursor.lockState = isLock ? CursorLockMode.Locked : CursorLockMode.None;
 		}
 	}
 	
