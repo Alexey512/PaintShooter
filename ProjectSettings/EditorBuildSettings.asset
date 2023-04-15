@@ -6,11 +6,8 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/PaintShooter/StartScene.unity
-    guid: b2aae2c3d73fe7f48a356afbdbb0850b
-  - enabled: 1
-    path: Assets/Scenes/PaintShooter/PaintShooterScene.unity
-    guid: 26d207dcf3eeae24c8099a7823bfc9a6
+    path: Assets/Scenes/NetShooter/GameScene.unity
+    guid: b8d85d7e1756d2f49ba785846c3dddf1
   m_configObjects:
     com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000,
       guid: 7660dc870973a0e4eb5783114d6ba4b0, type: 2}
