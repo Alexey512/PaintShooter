@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Game.ZigZag.Factories
+namespace Game.ZigZag.Configs
 {
-	internal class TilesFactory
+	public interface IGameConfig
 	{
+		ILevelConfig GetCurrentLevelConfig();
 	}
 }

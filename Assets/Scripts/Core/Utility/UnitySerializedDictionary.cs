@@ -4,7 +4,8 @@ using UnityEngine;
 
 namespace Utility
 {
-    public abstract class UnitySerializedDictionary<TKey, TValue> : Dictionary<TKey, TValue>, ISerializationCallbackReceiver
+    [Serializable]
+	public abstract class UnitySerializedDictionary<TKey, TValue> : Dictionary<TKey, TValue>, ISerializationCallbackReceiver
     {
         [Serializable]
         private struct KeyValueData

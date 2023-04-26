@@ -1,9 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
 namespace Core.Factories
 {
+	[CreateAssetMenu(fileName = "GameObjectsFactory", menuName = "Game/GameObjects Factory", order = -1)]
 	public class GameObjectsFactory: ScriptableObject, IGameObjectsFactory
 	{
 		[SerializeField]

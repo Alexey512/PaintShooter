@@ -5,7 +5,7 @@ using Zenject;
 
 namespace Game.PaintShooter.Factories
 {
-	[CreateAssetMenu(fileName = "BulletFactory", menuName = "Game/Bullet Factory", order = -1)]
+	[CreateAssetMenu(fileName = "BulletFactory", menuName = "PaintShooter/Bullet Factory", order = -1)]
 	public class BulletFactory: GameObjectsFactory, IFactory<BulletUnit>
 	{
 		[Inject]

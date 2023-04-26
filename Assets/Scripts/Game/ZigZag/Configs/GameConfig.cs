@@ -4,45 +4,36 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using Utility;
 
 namespace Game.ZigZag.Configs
 {
-	public enum RewardRule
-	{
-		Undefined,
-		Random,
-		Sequence
-	}
 	
-	[Serializable]
-	public struct TileConfig
-	{
-		public int Width;
-		public int Height;
-	}
-
 
 	[Serializable]
-	public struct RewardsConfig
+	public class DifficultyConfigs
 	{
-		public TileConfig Tile;
+		public int Difficulty;
 
-
+		public LevelConfig LevelConfig;
 	}
 
-	[Serializable]
-	public struct DifficultyConfig
+	[CreateAssetMenu(fileName = "FieldConfig", menuName = "ZigZag/FieldConfig", order = -1)]
+	public class GameConfig: ScriptableObject, IGameConfig
 	{
+		public int Difficulty => _difficulty;
 
-	}
+		public List<DifficultyConfigs> DifficultyConfigs => _difficultyConfigs;
 
-	[CreateAssetMenu(fileName = "FieldConfig", menuName = "Zag/FieldConfig", order = -1)]
-	public class GameConfig: ScriptableObject
-	{
-		public float BallSpeed;
+		[SerializeField]
+		private int _difficulty;
 
-		public RewardRule RewardRule;
+		[SerializeField]
+		private List<DifficultyConfigs> _difficultyConfigs;
 
-		public DifficultyConfig DifficultyConfig;
+		public ILevelConfig GetCurrentLevelConfig()
+		{
+			return DifficultyConfigs.FirstOrDefault(c => c.Difficulty == Difficulty)?.LevelConfig;
+		}
 	}
 }
