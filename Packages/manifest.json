@@ -1,6 +1,8 @@
 {
   "dependencies": {
+    "com.leopotam.ecslite": "https://github.com/Leopotam/ecslite.git",
     "com.mackysoft.serializereference-extensions": "https://github.com/mackysoft/Unity-SerializeReferenceExtensions.git?path=Assets/MackySoft/MackySoft.SerializeReferenceExtensions",
+    "com.scellecs.morpeh": "https://github.com/scellecs/morpeh.git",
     "com.svermeulen.extenject": "9.2.0-stcf3",
     "com.unity.cinemachine": "2.8.9",
     "com.unity.collab-proxy": "2.0.3",

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace ECS
@@ -142,6 +143,15 @@ namespace ECS
 		}
 		
 		public IEnumerable<IComponent> GetAllComponents() => _components.Values;
+		public bool HasComponent<T>() where T : class, IComponent
+		{
+			return HasComponent(typeof(T).GetHashCode());
+		}
+
+		public bool HasComponent(int typeId)
+		{
+			return _components.Values.Any(c => c.TypeId == typeId);
+		}
 
 		#endregion
 

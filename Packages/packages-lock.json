@@ -1,11 +1,25 @@
 {
   "dependencies": {
+    "com.leopotam.ecslite": {
+      "version": "https://github.com/Leopotam/ecslite.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "6b83a518237d3083f013fc0e0ab7580046c24aca"
+    },
     "com.mackysoft.serializereference-extensions": {
       "version": "https://github.com/mackysoft/Unity-SerializeReferenceExtensions.git?path=Assets/MackySoft/MackySoft.SerializeReferenceExtensions",
       "depth": 0,
       "source": "git",
       "dependencies": {},
       "hash": "763f5882d6885683c3dea902698001a6195660fd"
+    },
+    "com.scellecs.morpeh": {
+      "version": "https://github.com/scellecs/morpeh.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "e75b38d3db6456b9ad0538a933479f0b4497c669"
     },
     "com.svermeulen.extenject": {
       "version": "9.2.0-stcf3",

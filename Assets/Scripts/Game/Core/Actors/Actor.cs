@@ -101,6 +101,16 @@ namespace Game.Core.Actors
 			return _entity?.GetAllComponents() ?? null;
 		}
 
+		public bool HasComponent<T>() where T : class, IComponent
+		{
+			return _entity?.HasComponent<T>() ?? false;
+		}
+
+		public bool HasComponent(int typeId)
+		{
+			return _entity?.HasComponent(typeId) ?? false;
+		}
+
 		public ISystem AddSystem(ISystem system, IEntity owner = null)
 		{
 			_container?.Inject(system);

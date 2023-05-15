@@ -30,7 +30,11 @@ namespace ECS
 		public T GetSingleComponent<T>() where T : class, IComponent;
 
 		public IEnumerable<IComponent> GetAllComponents();
-		
+
+		public bool HasComponent<T>() where T : class, IComponent;
+
+		public bool HasComponent(int typeId);
+
 		#endregion
 
 		#region Systems

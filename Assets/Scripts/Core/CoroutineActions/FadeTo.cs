@@ -60,7 +60,9 @@ namespace Core.CoroutineActions
                 _isComplete = false;
                 foreach (var sprite in sprites)
                 {
-                    sprite?.DOFade(_fade, _time).OnComplete(() => { _isComplete = true; });
+	                
+	                
+	                sprite?.DOFade(_fade, _time).OnComplete(() => { _isComplete = true; });
                 }
             }
             else
