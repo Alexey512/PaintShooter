@@ -1,37 +1,20 @@
 ﻿using System;
 using Core.Paint;
-using ECS;
+using Core.ECS;
 using Game.Core.Units;
 using UnityEngine;
 using Zenject;
 using Random = UnityEngine.Random;
+using Game.PaintShooter.Components;
+using System.Linq;
 
 namespace Game.PaintShooter.Systems
 {
 	[Serializable]
-	public class CollisionPaintSystem: BaseSystem, IAfterEntityInitialize, IAfterEntityDeInitialize
+	public class CollisionPaintSystem: BaseSystem, IUpdateSystem
 	{
-		private ICollisionTrigger _collisionTrigger;
-
 		[Inject]
 		private IPaintManager _paintManager;
-
-		public void AfterEntityInitialize()
-		{
-			_collisionTrigger = Actor.GameObject.GetComponentInChildren<ICollisionTrigger>();
-			if (_collisionTrigger != null)
-			{
-				_collisionTrigger.CollisionEnter += OnCollisionEnter;
-			}
-		}
-
-		public void AfterEntityDeInitialize()
-		{
-			if (_collisionTrigger != null)
-			{
-				_collisionTrigger.CollisionEnter -= OnCollisionEnter;
-			}
-		}
 
 		private void OnCollisionEnter(Collision collision)
 		{
@@ -42,5 +25,16 @@ namespace Game.PaintShooter.Systems
 
 			_paintManager.PaintCollision(collision, bush);
 		}
-	}
+
+        public void OnUpdate(float deltaTime)
+        {
+            foreach (var collisionComponent in World.Filter<CollisionComponent>().With<BulletComponent>().Select(e => e.FindComponent<CollisionComponent>()))
+            {
+                foreach (var collision in collisionComponent.Collisions.Where(c => c.CollisionType == CollisionType.Enter))
+                {
+                    OnCollisionEnter(collision.Collision);
+                }
+            }
+        }
+    }
 }

@@ -9,6 +9,6 @@ namespace Game.PaintShooter.Components
 {
 	[Serializable]
 	public class HealthComponent: CounterComponent<int>
-	{
-	}
+    {
+    }
 }

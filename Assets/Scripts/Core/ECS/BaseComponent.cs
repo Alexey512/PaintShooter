@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ECS
+namespace Core.ECS
 {
 	[Serializable]
 	public class BaseComponent: IComponent

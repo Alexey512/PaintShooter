@@ -1,69 +1,64 @@
 ﻿using System;
+using System.Linq;
 using Core.Input;
-using ECS;
+using Core.ECS;
+using Game.Core.ECS;
 using Game.PaintShooter.Components;
-using Game.PaintShooter.Units;
 using UnityEngine;
 using Zenject;
+using Game.PaintShooter.Factories;
 
 namespace Game.PaintShooter.Systems
 {
 	[Serializable]
-	public class WeaponSystem: BaseSystem, IAfterEntityInitialize
+	public class WeaponSystem: BaseSystem, IAfterEntityInitialize, IUpdateSystem
 	{
-		private bool _isInitialized;
+        [Inject] 
+        private BulletFactory _bulletFactory;
 
-		[Inject]
-		private IFactory<BulletUnit> _bulletFactory;
+        private InputController _input;
 
-		private InputController _input;
+        private EntityFilter _weaponFilter;
 
-		public override void Initialize()
-		{
-			_input = GameObject.FindObjectOfType<InputController>();
-		}
+        private bool _isInitialized;
 
-		public void AfterEntityInitialize()
-		{
-			var weapon = Owner.GetSingleComponent<WeaponComponent>();
-			if (weapon == null)
-				return;
+        public void AfterEntityInitialize()
+        {
+            //TODO: Inject
+            _input = GameObject.FindObjectOfType<InputController>();
 
-			_isInitialized = true;
-		}
-
-		public override void Update()
-		{
-			if (!_isInitialized || _input == null)
-				return;
-
-			if (_input.Shoot)
-			{
-				Shoot();
-				_input.Shoot = false;
-			}
-		}
+            _weaponFilter = World.Filter<WeaponComponent>();
+        }
 
 		private void Shoot()
-		{
-			if (_bulletFactory == null)
+        {
+			var bulletEntity = _bulletFactory.Create();
+			if (bulletEntity == null)
 				return;
-
-			var bullet = _bulletFactory.Create();
-			if (bullet == null)
-				return;
-
-			bullet.transform.position = Actor.GameObject.transform.position;
 
 			if (_input.ActionPoint != null)
 			{
 				var startPos = _input.ActionPoint.transform.position;
-				bullet.transform.position = startPos;
-				//var endPos = _input.ActionPoint.rotation * Vector3.forward * 100.0f;
-				var endPos = startPos + _input.ActionPoint.forward * 100.0f;
 
-				bullet.Move(endPos);
-			}
+                var bullet = bulletEntity.FindComponent<BulletComponent>();
+                bullet.Position = startPos;
+                bullet.Direction = _input.ActionPoint.forward.normalized;
+                bullet.LeftTime = bullet.LifeTime;
+
+                bullet.Actor.Owner.transform.position = startPos;
+            }
 		}
-	}
+
+        public void OnUpdate(float deltaTime)
+        {
+            if (_input == null)
+                return;
+
+            if (_input.Shoot)
+            {
+                Shoot();
+                _input.Shoot = false;
+            }
+        }
+    }
 }

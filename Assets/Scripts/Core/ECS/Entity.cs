@@ -1,16 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
-namespace ECS
+namespace Core.ECS
 {
 	public class Entity: IEntity
 	{
-		public Guid GUID { get; }
+		public Guid Guid { get; }
 		
-		private readonly Dictionary<Type, IComponent> _components = new Dictionary<Type, IComponent>();
-		
-		private readonly Dictionary<Type, ISystem> _systems = new Dictionary<Type, ISystem>();
+		private readonly Dictionary<int, IComponent> _components = new Dictionary<int, IComponent>();
 
 		private bool _isInitialize = false;
 
@@ -18,7 +17,7 @@ namespace ECS
 
 		public Entity()
 		{
-			GUID = Guid.NewGuid();
+			Guid = Guid.NewGuid();
 		}
 
 		public void Dispose()
@@ -26,27 +25,21 @@ namespace ECS
 			DeInitialize();
 		}
 
-		public void Initialize()
+		public virtual void Initialize()
 		{
 			if (_isInitialize)
 				return;
-			
-			EntityManager.Instance.RegisterEntity(this);
 
-			foreach (var component in _components.Values)
-			{
-				if (component is IAfterEntityInitialize afterInit)
-					afterInit.AfterEntityInitialize();
-			}
+            foreach (var component in _components.Values)
+            {
+                if (component is IAfterEntityInitialize afterDeInit)
+                    afterDeInit.AfterEntityInitialize();
+            }
 
-			foreach (var system in _systems.Values)
-			{
-				if (system is IAfterEntityInitialize afterInit)
-					afterInit.AfterEntityInitialize();
-			}
-		}
+            _isInitialize = true;
+        }
 
-		public void DeInitialize()
+		public virtual void DeInitialize()
 		{
 			if (!_isInitialize)
 				return;
@@ -57,21 +50,7 @@ namespace ECS
 					afterDeInit.AfterEntityDeInitialize();
 			}
 
-			foreach (var system in _systems.Values)
-			{
-				if (system is IAfterEntityDeInitialize afterDeInit)
-					afterDeInit.AfterEntityDeInitialize();
-			}
-
-			EntityManager.Instance.UnRegisterEntity(this);
-		}
-
-		public void Update()
-		{
-			foreach (var system in _systems.Values)
-			{
-				system.Update();
-			}
+            _isInitialize = false;
 		}
 
 		public void Clear()
@@ -79,22 +58,18 @@ namespace ECS
 			DeInitialize();
 			
 			_components.Clear();
-			_systems.Clear();
 		}
-
-		#region Components
 
 		public IComponent AddComponent(IComponent component, IEntity owner = null)
 		{
-			Type componentType = component.GetType();
-			if (_components.TryGetValue(componentType, out var comp))
+			var typeInfo = TypesResolver.GetTypeInfo(component.GetType());
+			if (_components.TryGetValue(typeInfo.Id, out var comp))
 			{
-				Debug.LogError($"Component '{componentType}' already added in Entity '{GUID}'");
 				return comp;
 			}
 
 			component.Owner = owner ?? this;
-			_components[componentType] = component;
+			_components[typeInfo.Id] = component;
 			
 			if (_isInitialize)
 			{
@@ -112,13 +87,14 @@ namespace ECS
 
 		public void RemoveComponent(Type componentType)
 		{
-			if (_components.TryGetValue(componentType, out var component))
+            var typeInfo = TypesResolver.GetTypeInfo(componentType);
+            if (_components.TryGetValue(typeInfo.Id, out var component))
 			{
 				if (component is IAfterEntityDeInitialize afterDeInit)
 					afterDeInit.AfterEntityDeInitialize();
 				
 				component.Owner = null;
-				_components.Remove(componentType);
+				_components.Remove(typeInfo.Id);
 			}
 		}
 
@@ -131,82 +107,24 @@ namespace ECS
 		{
 			RemoveComponent(typeof(T));
 		}
-
-		public T GetSingleComponent<T>() where T : class, IComponent
-		{
-			if (_components.TryGetValue(typeof(T), out var component))
-			{
-				return component as T;
-			}
-			return null;
-		}
 		
-		public IEnumerable<IComponent> GetAllComponents() => _components.Values;
-
-		#endregion
-
-		#region Systems
-
-		public ISystem AddSystem(ISystem system, IEntity owner = null)
-		{
-			Type systemType = system.GetType();
-			if (_systems.TryGetValue(systemType, out var sys))
-			{
-				Debug.LogError($"System '{systemType}' already added in Entity '{GUID}'");
-				return sys;
-			}
-
-			system.Owner = owner ?? this;
-			system.Initialize();
-			_systems[systemType] = system;
-			
-			if (_isInitialize)
-			{
-				if (system is IAfterEntityInitialize afterInit)
-					afterInit.AfterEntityInitialize();
-			}
-			
-			return system;
+        public bool HasComponent<T>() where T : class, IComponent
+        {
+            return _components.ContainsKey(ComponentType<T>.Info.Id);
 		}
 
-		public T AddSystem<T>(IEntity owner = null) where T : class, ISystem, new()
-		{
-			return AddSystem(new T(), owner) as T;
-		}
+        public bool HasComponent(int typeId)
+        {
+            return _components.ContainsKey(typeId);
+        }
 
-		public void RemoveSystem(Type systemType)
-		{
-			if (_systems.TryGetValue(systemType, out var system))
-			{
-				if (system is IAfterEntityDeInitialize afterDeInit)
-					afterDeInit.AfterEntityDeInitialize();
-				
-				system.Owner = null;
-				_systems.Remove(systemType);
-			}
-		}
-
-		public void RemoveSystem(ISystem system)
-		{
-			_components.Remove(system.GetType());
-		}
-
-		public void RemoveSystem<T>() where T : class, ISystem, new()
-		{
-			_systems.Remove(typeof(T));
-		}
-
-		public T GetSingleSystem<T>() where T : class, ISystem
-		{
-			if (_systems.TryGetValue(typeof(T), out var system))
-			{
-				return system as T;
-			}
-			return null;
-		}
-
-		public IEnumerable<ISystem> GetAllSystems() => _systems.Values;
-
-		#endregion
-	}
+        public T FindComponent<T>() where T : class, IComponent
+        {
+            if (_components.TryGetValue(ComponentType<T>.Info.Id, out var component))
+            {
+                return component as T;
+            }
+            return null;
+        }
+    }
 }

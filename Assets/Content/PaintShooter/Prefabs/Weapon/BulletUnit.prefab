@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 228458086960219392}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2173472198727667322}
@@ -97,7 +97,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.3
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &3370180284721464463
 Rigidbody:
@@ -127,6 +127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0b6da58d9257e547ab44d8e2c392996, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _actor: {fileID: 5538262634429900444}
 --- !u!1 &2173472198727667320
 GameObject:
   m_ObjectHideFlags: 0
@@ -136,7 +137,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2173472198727667322}
-  - component: {fileID: 2173472198727667321}
   - component: {fileID: 5538262634429900444}
   m_Layer: 6
   m_Name: BulletUnit
@@ -161,39 +161,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2173472198727667321
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2173472198727667320}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 08cc5e3691e3cfb419b5c34f7cc2949f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _behaviourAction:
-    rid: 8359346629037260800
-  references:
-    version: 2
-    RefIds:
-    - rid: 8359346629037260800
-      type: {class: Sequence, ns: Core.CoroutineActions, asm: Assembly-CSharp}
-      data:
-        _actions:
-        - rid: 8359346629037260813
-        - rid: 8359346629037260803
-    - rid: 8359346629037260803
-      type: {class: DestroyGameObject, ns: Core.CoroutineActions, asm: Assembly-CSharp}
-      data:
-        _owner: {fileID: 2173472198727667320}
-    - rid: 8359346629037260813
-      type: {class: MoveTo, ns: Core.CoroutineActions, asm: Assembly-CSharp}
-      data:
-        _targetPosition: {x: 0, y: 0, z: 0}
-        _speed: 15
-        _owner: {fileID: 2173472198727667320}
 --- !u!114 &5538262634429900444
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -207,9 +174,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _config:
-    _components: []
-    _systems: []
-  _configAsset: {fileID: 11400000, guid: 203ea941a11224f46beaca44995a2bf9, type: 2}
+    _components:
+    - rid: 7081192053001158658
+  _configAsset: {fileID: 0}
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 7081192053001158658
+      type: {class: BulletComponent, ns: Game.PaintShooter.Components, asm: Scrips}
+      data:
+        Position: {x: 0, y: 0, z: 0}
+        Direction: {x: 0, y: 0, z: 0}
+        Speed: 7

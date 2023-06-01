@@ -1,4 +1,4 @@
-﻿namespace ECS
+﻿namespace Core.ECS
 {
 	public interface IComponent
 	{

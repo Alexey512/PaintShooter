@@ -6,7 +6,7 @@ namespace Core.Actions
     [ExecuteInEditMode]
     public class MonoAction: MonoBehaviour
     {
-        [SerializeReference, SubclassSelector]
+        [SerializeReference]
         private CoroutineAction _action;
 
         [SerializeField]
