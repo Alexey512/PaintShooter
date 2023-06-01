@@ -1,5 +1,5 @@
 ﻿using System;
-using ECS;
+using Core.ECS;
 using UnityEngine;
 
 namespace Game.PaintShooter.Components

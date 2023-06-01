@@ -16,7 +16,7 @@ namespace Game.PaintShooter.Visual.Weapon
 
 		public Vector3 Position => _owner != null ? _owner.position : Vector3.zero;
 		
-		//TODO: добавить выбор направления
+		//TODO: added other directions
 		public Vector3 Direction => _owner != null ? _owner.right : Vector3.zero;
 	}
 }

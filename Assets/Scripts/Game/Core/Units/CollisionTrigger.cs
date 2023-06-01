@@ -1,50 +1,37 @@
 ﻿using System;
+using Core.ECS;
+using Game.Core.ECS;
+using Game.PaintShooter.Components;
 using UnityEngine;
 
 namespace Game.Core.Units
 {
-	public class CollisionTrigger: MonoBehaviour, ICollisionTrigger
-	{
-		public event Action<Collision> CollisionEnter;
+    public class CollisionTrigger: MonoBehaviour
+    {
+        [SerializeField]
+        private ActorProvider _actor;
 
-		public event Action<Collision> CollisionExit;
-		
-		public event Action<Collision> CollisionStay;
-		
-		public event Action<Collider> TriggerEnter;
-		
-		public event Action<Collider> TriggerExit;
-		
-		public event Action<Collider> TriggerStay;
+        private void OnCollisionEnter(Collision collision)
+        {
+            AddCollision(CollisionType.Enter, collision);
+        }
 
-		private void OnCollisionEnter(Collision collision)
+        private void OnCollisionExit(Collision collision)
 		{
-			CollisionEnter?.Invoke(collision);
-		}
+            AddCollision(CollisionType.Exit, collision);
+        }
 
-		private void OnCollisionExit(Collision collision)
+        private void OnCollisionStay(Collision collision)
 		{
-			CollisionExit?.Invoke(collision);
-		}
+            AddCollision(CollisionType.Stay, collision);
+        }
 
-		private void OnCollisionStay(Collision collision)
-		{
-			CollisionStay?.Invoke(collision);
-		}
-
-		private void OnTriggerEnter(Collider other)
-		{
-			TriggerEnter?.Invoke(other);
-		}
-
-		private void OnTriggerExit(Collider other)
-		{
-			TriggerExit?.Invoke(other);
-		}
-
-		private void OnTriggerStay(Collider other)
-		{
-			TriggerStay?.Invoke(other);
-		}
+        private void AddCollision(CollisionType type, Collision collision)
+        {
+            if (_actor == null)
+                return;
+            var collisionComponent = _actor.AddComponent<CollisionComponent>();
+            collisionComponent.Collisions.Add(new CollisionInfo { CollisionType = type, Collision = collision });
+        }
 	}
 }

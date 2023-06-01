@@ -1,21 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace ECS
+namespace Core.ECS
 {
-	public interface IEntity: IDisposable
+	public interface IEntity
 	{
-		Guid GUID { get; }
+		Guid Guid { get; }
 
 		void Initialize();
 
 		void DeInitialize();
 
 		void Clear();
-
-		void Update();
-
-		#region Components
 		
 		IComponent AddComponent(IComponent component, IEntity owner = null);
 
@@ -27,32 +23,10 @@ namespace ECS
 
 		void RemoveComponent<T>() where T : class, IComponent, new();
 
-		public T GetSingleComponent<T>() where T : class, IComponent;
+		bool HasComponent<T>() where T : class, IComponent;
 
-		public IEnumerable<IComponent> GetAllComponents();
+        bool HasComponent(int typeId);
 
-		public bool HasComponent<T>() where T : class, IComponent;
-
-		public bool HasComponent(int typeId);
-
-		#endregion
-
-		#region Systems
-
-		ISystem AddSystem(ISystem system, IEntity owner = null);
-
-		T AddSystem<T>(IEntity owner = null) where T : class, ISystem, new();
-
-		void RemoveSystem(Type systemType);
-
-		void RemoveSystem(ISystem system);
-
-		void RemoveSystem<T>() where T : class, ISystem, new();
-
-		T GetSingleSystem<T>() where T : class, ISystem;
-
-		IEnumerable<ISystem> GetAllSystems();
-
-		#endregion
-	}
+        T FindComponent<T>() where T : class, IComponent;
+    }
 }

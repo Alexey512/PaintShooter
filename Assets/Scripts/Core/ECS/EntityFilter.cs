@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ECS
+namespace Core.ECS
 {
 	public sealed class EntityFilter: IEnumerable<IEntity>
 	{
@@ -15,13 +15,18 @@ namespace ECS
 
 		internal World World;
 
-		public EntityFilter(World world, int typeId)
+        public EntityFilter(World world)
+        {
+            World = world;
+        }
+
+        public EntityFilter(World world, int typeId)
 		{
 			World = world;
 			IncludeTypes.Add(typeId);
 		}
 
-		public EntityFilter With<T>() where T : struct, IComponent 
+		public EntityFilter With<T>() where T : class, IComponent 
 		{
 			IncludeTypes.Add(typeof(T).GetHashCode());
 			return this;
@@ -58,13 +63,20 @@ namespace ECS
 		
 		public bool MoveNext()
 		{
-			if (_entityIndex < _filter.World.Entities.Count - 1)
-			{
-				_entityIndex++;
-				return true;
-			}
-			else
-				return false;
+            while (_entityIndex < _filter.World.Entities.Count - 1)
+            {
+                _entityIndex++;
+
+                var entity = _filter.World.Entities[_entityIndex];
+
+                if (_filter.IncludeTypes.Any(typeId => entity.HasComponent(typeId)) &&
+                    !_filter.ExcludeTypes.Any(typeId => entity.HasComponent(typeId)))
+                {
+                    return true;
+                }
+            }
+
+            return false;
 		}
 
 		public void Reset()

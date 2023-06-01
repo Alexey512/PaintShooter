@@ -12,24 +12,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5af1182610cb8b74fa27de9b7f2a9e0c, type: 3}
   m_Name: PlayerConfig
   m_EditorClassIdentifier: 
-  _components:
-  - rid: 9064340349107044371
-  - rid: 9064340349107044372
-  - rid: 9064340349107044373
-  _systems:
-  - rid: 9064340349107044370
+  _config:
+    _components:
+    - rid: 7081192019564691457
+    - rid: 7081192019564691458
+    - rid: 7081192019564691459
   references:
     version: 2
     RefIds:
-    - rid: 9064340349107044370
-      type: {class: WeaponSystem, ns: Game.PaintShooter.Systems, asm: Assembly-CSharp}
-    - rid: 9064340349107044371
-      type: {class: PlayerComponent, ns: Game.PaintShooter.Components, asm: Assembly-CSharp}
-    - rid: 9064340349107044372
-      type: {class: HealthComponent, ns: Game.PaintShooter.Components, asm: Assembly-CSharp}
-      data:
-        _value: 0
-    - rid: 9064340349107044373
-      type: {class: WeaponComponent, ns: Game.PaintShooter.Components, asm: Assembly-CSharp}
+    - rid: 7081192019564691457
+      type: {class: PlayerComponent, ns: Game.PaintShooter.Components, asm: Scrips}
+    - rid: 7081192019564691458
+      type: {class: WeaponComponent, ns: Game.PaintShooter.Components, asm: Scrips}
       data:
         RateOfFire: 1
+    - rid: 7081192019564691459
+      type: {class: HealthComponent, ns: Game.PaintShooter.Components, asm: Scrips}
+      data:
+        _value: 0

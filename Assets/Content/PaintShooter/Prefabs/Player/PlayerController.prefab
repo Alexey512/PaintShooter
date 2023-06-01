@@ -454,7 +454,7 @@ MonoBehaviour:
   GroundedRadius: 0.28
   GroundLayers:
     serializedVersion: 2
-    m_Bits: 513
+    m_Bits: 1
   CinemachineCameraTarget: {fileID: 7730011348912173873}
   TopClamp: 70
   BottomClamp: -30
@@ -589,11 +589,35 @@ MonoBehaviour:
     m_ActionId: 5ea10103-1f51-41ac-bdb5-b629b0979144
     m_ActionName: Player/Shoot[/Mouse/leftButton]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1810095501908301334}
+        m_TargetAssemblyTypeName: Core.Input.InputController, Assembly-CSharp
+        m_MethodName: OnRotate
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: e031e5c9-68c0-4ef5-a1ff-7533fe46fc5a
     m_ActionName: Player/Rotate[/Mouse/rightButton]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1810095501908301334}
+        m_TargetAssemblyTypeName: Core.Input.InputController, Assembly-CSharp
+        m_MethodName: OnEscape
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: c0077813-f86a-4d7d-af67-bd96c1007e0b
     m_ActionName: Player/Esc[/Keyboard/escape]
   m_NeverAutoSwitchControlSchemes: 0
@@ -615,7 +639,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _config:
     _components: []
-    _systems: []
   _configAsset: {fileID: 11400000, guid: 1ae66122ce9271d4e9c2db196cb2f4c7, type: 2}
   references:
     version: 2

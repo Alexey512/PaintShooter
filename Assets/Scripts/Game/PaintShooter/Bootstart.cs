@@ -1,4 +1,6 @@
-﻿using Game.Core.UI;
+﻿using Core.ECS;
+using Game.Core.UI;
+using Game.PaintShooter.Components;
 using Game.PaintShooter.States;
 using UnityEngine;
 using Zenject;
@@ -24,8 +26,8 @@ namespace Game.PaintShooter
 		}
 
 		public override void Start()
-		{
-			_stateMachine = Container.Instantiate<GameStateMachine>();
+        {
+            _stateMachine = Container.Instantiate<GameStateMachine>();
 			_stateMachine.Enter();
 		}
 	}

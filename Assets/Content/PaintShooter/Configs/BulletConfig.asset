@@ -12,14 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5af1182610cb8b74fa27de9b7f2a9e0c, type: 3}
   m_Name: BulletConfig
   m_EditorClassIdentifier: 
-  _components: []
-  _systems:
-  - rid: 9064340349107044367
-  - rid: 9064340349107044368
+  _config:
+    _components:
+    - rid: 7081192053001158656
   references:
     version: 2
     RefIds:
-    - rid: 9064340349107044367
-      type: {class: CollisionPaintSystem, ns: Game.PaintShooter.Systems, asm: Assembly-CSharp}
-    - rid: 9064340349107044368
-      type: {class: DestroyOnCollisionSystem, ns: Game.PaintShooter.Systems, asm: Assembly-CSharp}
+    - rid: 7081192053001158656
+      type: {class: BulletComponent, ns: Game.PaintShooter.Components, asm: Scrips}
+      data:
+        Position: {x: -752.49176, y: 0.8075007, z: -990.6059}
+        Direction: {x: -0.6236653, y: 0, z: -0.7816915}
+        Speed: 5

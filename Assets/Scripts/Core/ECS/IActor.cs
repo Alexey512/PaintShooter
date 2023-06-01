@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
 
-namespace ECS
+namespace Core.ECS
 {
 	public interface IActor: IEntity
 	{
 		public string Name { get; }
 		
-		GameObject GameObject { get; }
+		GameObject Owner { get; }
 	}
 }

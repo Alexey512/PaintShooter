@@ -1,15 +1,11 @@
 ﻿using System;
 
-namespace ECS
+namespace Core.ECS
 {
-	public interface ISystem: IDisposable
+	public interface ISystem
 	{
-		public Guid GUID { get; set; }
+		public IWorld World { get; set; }
 
-		public IEntity Owner { get; set; }
-
-		void Initialize();
-
-		void Update();
+        public Guid Guid { get; set; }
 	}
 }

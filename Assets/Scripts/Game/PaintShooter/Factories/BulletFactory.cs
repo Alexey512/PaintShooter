@@ -1,23 +1,15 @@
-﻿using Core.Factories;
-using Game.PaintShooter.Units;
+﻿using Core.ECS;
+using Game.Core.ECS;
 using UnityEngine;
 using Zenject;
 
 namespace Game.PaintShooter.Factories
 {
-	[CreateAssetMenu(fileName = "BulletFactory", menuName = "PaintShooter/Bullet Factory", order = -1)]
-	public class BulletFactory: GameObjectsFactory, IFactory<BulletUnit>
-	{
-		[Inject]
-		private void Construct(DiContainer container)
-		{
-			Initialize(container);
-		}
+    public class BulletFactory: ActorFactory
+    {
+    }
 
-		public BulletUnit Create()
-		{
-			var obj = Instantiate();
-			return obj != null ? obj.GetComponent<BulletUnit>() : null;
-		}
-	}
+    public class BulletPool: ActorPool
+    {
+    }
 }

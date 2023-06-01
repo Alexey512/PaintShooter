@@ -13,15 +13,15 @@ MonoBehaviour:
   m_Name: WorldConfig
   m_EditorClassIdentifier: 
   _components:
-  - rid: 9064340349107044374
+  - rid: 7081192004189945879
   _systems:
-  - rid: 9064340349107044375
+  - rid: 7081192004189945880
   references:
     version: 2
     RefIds:
-    - rid: 9064340349107044374
-      type: {class: WorldComponent, ns: Game.PaintShooter.Components, asm: Assembly-CSharp}
+    - rid: 7081192004189945879
+      type: {class: WorldComponent, ns: Game.PaintShooter.Components, asm: Scrips}
       data:
         UnitsCount: 0
-    - rid: 9064340349107044375
-      type: {class: CreateUnitsSystem, ns: Game.PaintShooter.Systems, asm: Assembly-CSharp}
+    - rid: 7081192004189945880
+      type: {class: WorldSystem, ns: Game.ZigZag.Systems, asm: Scrips}

@@ -10,7 +10,9 @@ namespace Utility.Extensions
             Renderer[] renderers = go.GetComponentsInChildren<Renderer>();
             Bounds bounds = new Bounds(Vector3.zero, Vector3.one);
             foreach (Renderer renderer in renderers)
+            {
                 bounds.Encapsulate(renderer.bounds);
+            }
 
             return bounds;
         }
